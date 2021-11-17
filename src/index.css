@@ -11,3 +11,9 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+.buttonBlock{
+  margin-bottom: 10px;
+}
+.createUser .ant-form .ant-form-item{
+  margin-bottom: 15px;
+}

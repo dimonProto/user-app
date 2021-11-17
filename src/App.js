@@ -1,13 +1,13 @@
 import './App.css';
 import 'antd/dist/antd.css';
 import {BrowserRouter, Navigate, Route, Routes} from "react-router-dom";
-import UserList from "./pages/UserList";
 import store from "./redux/reduxStore";
 import {Provider} from "react-redux";
-import UserDetail from "./pages/UserDetail";
 import UserEdit from "./pages/UserEdit";
-import UserCreate from "./pages/UserCreate";
 import NotFound from "./pages/NotFound";
+import WithUserList from "./decorators/WithUserList";
+import WithUserDetail from "./decorators/WithUserDetail";
+import WithUserCreate from "./decorators/WithUserCreate";
 
 
 function App() {
@@ -17,11 +17,11 @@ function App() {
         <Provider store={store}>
             <BrowserRouter>
                 <Routes>
-                    <Route exact  path={'/user'} element={<UserList/>}/>
-                    <Route exact  path={'/user/detail'} element={<UserDetail/>}/>
-                    <Route exact  path={'/user/edit'} element={<UserEdit/>}/>
-                    <Route exact  path={'/user/create'} element={<UserCreate/>}/>
-                    <Route path={'/'} element={<Navigate replace to={'/user'} />} />
+                    <Route path={'/users'} element={<WithUserList/>}/>
+                    <Route path={'/user/:id'} element={<WithUserDetail/>}/>
+                    <Route path={'/user/edit'} element={<UserEdit/>}/>
+                    <Route path={'/user/create'} element={<WithUserCreate/>}/>
+                    <Route path={'/'} element={<Navigate replace to={'/users'} />} />
                     <Route path='*' element={<NotFound />} />
                 </Routes>
             </BrowserRouter>
