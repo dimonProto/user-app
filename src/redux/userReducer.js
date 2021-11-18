@@ -39,6 +39,7 @@ const userReducer = (state = initialState, action) => {
                 user:{}
             }
 
+
         default:
             return state
     }
@@ -50,6 +51,7 @@ export const setUser = (user) =>({type:SET_USER,user})
 export const deleteUser = (userId) =>({type:DELETE_USER,payload:{userId}})
 export const makeUser = () => ({type:CREATE_USER})
 export const clearUser = () => ({type:CLEAR_USER})
+
 
 
 export const requestUsers = () => async (dispatch) =>{

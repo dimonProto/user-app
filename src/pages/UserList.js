@@ -2,12 +2,14 @@ import React, {useEffect} from "react";
 import LayoutComponent from "../components/LayoutComponent/LayoutComponent";
 import {Button, Table} from "antd";
 import {Link} from "react-router-dom";
+import {clearUser} from "../redux/userReducer";
 
 const UserList = (props) => {
 
     const {users,deleteUser,getUsers} = props
     useEffect(() => {
         getUsers()
+        clearUser()
     },[])
 
 
@@ -40,7 +42,7 @@ const UserList = (props) => {
             key: 'deleted',
             dataIndex: 'deleted',
             render: (text,user) => (
-                <Button onClick={() => deleteUser(user.id, getUsers)} type="primary" danger>Delete</Button>
+                <Button onClick={() => deleteUser(user.id,getUsers)} type="primary" danger>Delete</Button>
             ),
         }
 

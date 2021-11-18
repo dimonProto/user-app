@@ -24,8 +24,8 @@ let mapDispatchToProps = (dispatch) => {
         clearUser: () => {
             dispatch(clearUser())
          },
-        deleteUser: (userId) => {
-            dispatch(removeUser(userId))
+        deleteUser: (userId,callback) => {
+            dispatch(removeUser(userId,callback))
         }
     }
 }

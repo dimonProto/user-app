@@ -1,22 +1,19 @@
 import React, {useEffect} from "react";
 import LayoutComponent from "../components/LayoutComponent/LayoutComponent";
-import {useParams} from "react-router-dom";
+import {Link, useNavigate, useParams} from "react-router-dom";
 import {Button, Space} from "antd";
 
 const ALLOWED_USER_FIELDS = ['first_name','last_name','birth_date','gender','job','biography']
 const UserDetail = (props) => {
 
     const  { id } = useParams();
-    const {getUser,user,clearUser,deleteUser} = props
+    const {getUser,user,deleteUser} = props
 
     useEffect(() => {
         getUser(id)
 
-        return () => {
-            clearUser()
-        }
     },[])
-
+    let navigate = useNavigate();
     const formatText = (text) => text.replace(/_/g, ' ').split().map( str => str.charAt(0).toUpperCase() + str.slice(1))
 
     return(
@@ -37,12 +34,11 @@ const UserDetail = (props) => {
                     </Space>
                 </div>
                 <Space>
-                    <Button type="dashed" >Edit</Button>
-                    <Button onClick={() => deleteUser(id)} type="primary" danger>Delete</Button>
+                    <Button type="dashed"  ><Link to={`/user/edit/${id}`}>Edit</Link></Button>
+                    <Button onClick={() => deleteUser(id,()=> navigate('/users'))} type="primary" danger>Delete</Button>
                 </Space>
 
             </Space>
-
         </LayoutComponent>
     )
 }

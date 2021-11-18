@@ -10,7 +10,7 @@ import WithUserDetail from "./decorators/WithUserDetail";
 import WithUserCreate from "./decorators/WithUserCreate";
 
 
-function App() {
+function App(props) {
 
   return (
     <div>
@@ -19,7 +19,7 @@ function App() {
                 <Routes>
                     <Route path={'/users'} element={<WithUserList/>}/>
                     <Route path={'/user/:id'} element={<WithUserDetail/>}/>
-                    <Route path={'/user/edit'} element={<UserEdit/>}/>
+                    <Route path={'/user/edit/:id'} element={<UserEdit {...props}/>}/>
                     <Route path={'/user/create'} element={<WithUserCreate/>}/>
                     <Route path={'/'} element={<Navigate replace to={'/users'} />} />
                     <Route path='*' element={<NotFound />} />

@@ -15,3 +15,6 @@ export const getUserInfoRequest = async (userId) => {
 export const createUserRequest = async (user) => {
     return  axios.post(`https://frontend-candidate.dev.sdh.com.ua/v1/contact/`, user)
 }
+export const editUserRequest = async (userId,user) => {
+    return  axios.put(`https://frontend-candidate.dev.sdh.com.ua/v1/contact/${userId}`, user)
+}
