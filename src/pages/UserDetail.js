@@ -11,7 +11,6 @@ const UserDetail = (props) => {
 
     useEffect(() => {
         getUser(id)
-
     },[])
     let navigate = useNavigate();
     const formatText = (text) => text.replace(/_/g, ' ').split().map( str => str.charAt(0).toUpperCase() + str.slice(1))
@@ -19,9 +18,10 @@ const UserDetail = (props) => {
     return(
         <LayoutComponent>
             <Space direction={"vertical"} >
-                {Object.keys(user).filter(u => ALLOWED_USER_FIELDS.includes(u)).map(el => {
+                {Object.keys(user).filter(u => ALLOWED_USER_FIELDS.includes(u)).map((el,idx) => {
                   return (
-                       <Space >
+
+                       <Space key={idx}>
                            <Space size={0}>{formatText(el)}:</Space>
                            <Space>{user[el]}</Space>
                        </Space>

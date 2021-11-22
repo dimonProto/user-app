@@ -27,7 +27,7 @@ const userReducer = (state = initialState, action) => {
         case DELETE_USER:
             return {
                 ...state,
-                userId: state.users.filter(u => u.id !== action.payload.userId)
+                users: state.users.filter(u => u.id !== action.payload.userId)
             }
         case CREATE_USER:
             return {
@@ -77,8 +77,9 @@ export const getUser = (userId) => async (dispatch) => {
 
 export const removeUser = (userId,callback) =>  async (dispatch) =>{
     try {
-        const {data} = await deleteUserRequest(userId)
-        dispatch(deleteUser(data))
+         deleteUserRequest(userId).then(()=>{
+             dispatch(deleteUser(userId))
+         })
         if(callback){
             callback()
         }

@@ -5,9 +5,10 @@ import store from "./redux/reduxStore";
 import {Provider} from "react-redux";
 import UserEdit from "./pages/UserEdit";
 import NotFound from "./pages/NotFound";
-import WithUserList from "./decorators/WithUserList";
-import WithUserDetail from "./decorators/WithUserDetail";
-import WithUserCreate from "./decorators/WithUserCreate";
+import UserList from "./pages/UserList";
+import WithUser from "./decorators/WithUser";
+import UserDetail from "./pages/UserDetail";
+import UserCreate from "./pages/UserCreate";
 
 
 function App(props) {
@@ -17,10 +18,22 @@ function App(props) {
         <Provider store={store}>
             <BrowserRouter>
                 <Routes>
-                    <Route path={'/users'} element={<WithUserList/>}/>
-                    <Route path={'/user/:id'} element={<WithUserDetail/>}/>
-                    <Route path={'/user/edit/:id'} element={<UserEdit {...props}/>}/>
-                    <Route path={'/user/create'} element={<WithUserCreate/>}/>
+                    <Route path={'/users'} element={
+                        <WithUser>
+                            <UserList/>
+                        </WithUser>
+                    }/>
+                    <Route path={'/user/:id'} element={
+                        <WithUser>
+                            <UserDetail/>
+                        </WithUser>
+                    }/>
+                    <Route path={'/user/edit/:id'} element={<UserEdit />}/>
+                    <Route path={'/user/create'} element={
+                        <WithUser>
+                            <UserCreate/>
+                        </WithUser>
+                    }/>
                     <Route path={'/'} element={<Navigate replace to={'/users'} />} />
                     <Route path='*' element={<NotFound />} />
                 </Routes>

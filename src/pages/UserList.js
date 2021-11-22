@@ -42,7 +42,7 @@ const UserList = (props) => {
             key: 'deleted',
             dataIndex: 'deleted',
             render: (text,user) => (
-                <Button onClick={() => deleteUser(user.id,getUsers)} type="primary" danger>Delete</Button>
+                <Button onClick={() => deleteUser(user.id)} type="primary" danger>Delete</Button>
             ),
         }
 
