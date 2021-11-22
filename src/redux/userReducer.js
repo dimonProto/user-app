@@ -11,7 +11,6 @@ let initialState = {
     user: {}
 }
 
-
 const userReducer = (state = initialState, action) => {
     switch (action.type){
         case SET_USERS:
